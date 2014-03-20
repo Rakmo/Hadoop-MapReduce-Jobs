@@ -1,5 +1,5 @@
 /*Q1. Find top 10 average rated movies with descending order of rating 
- * (Use of chaining of multiple map-reduce job is a must here.) */
+ * (Use of chaining of multiple map-reduce jobs.) */
 
 import java.io.IOException;
 import java.text.DecimalFormat;
