@@ -1,3 +1,10 @@
+/**
+ * Objective: Move Generator contains the main method. It also contains various methods to generate different moves. 
+ * Every class description is given in the pdf files (Nine-Morris-Variant-D.pdf and Project Description)
+ * @author Omkar Kannav
+ * 
+ */
+
 package com.ok.variantD;
 
 import java.io.BufferedReader;
@@ -11,88 +18,88 @@ import java.util.ArrayList;
 	{
 		
 		try {
-			FileReader fr = new FileReader(args[0]);
-			BufferedReader br = new BufferedReader(fr);			
-			
+				FileReader fr = new FileReader(args[0]);
+				BufferedReader br = new BufferedReader(fr);			
+				
 				System.out.println("***** WHITE *****");
+				System.out.println("Depth: "+Integer.parseInt(args[2]));
+				
+				String boardPosition = br.readLine();
+				br.close();
+				System.out.println("Input board1.txt ----> "+boardPosition);
+				System.out.println("\nMiniMax Opening Result:");
+				MiniMaxOpening.setCountSE(0);
+				System.out.println("Next Board Position --> "+MiniMaxOpening.maxMin(Integer.parseInt(args[2]), boardPosition, 'W'));			
+				System.out.println("Positions Evaluated by Static Estimation: "+MiniMaxOpening.getCountSE());
+				System.out.println("MINIMAX Estimation: "+MiniMaxOpening.getCountMinimax());
+				
+				System.out.println("\n\nAB Opening Result:");
+				ABOpening.setCountSE(0);
+				System.out.println("Next Board Position --> "+ABOpening.maxMin(Integer.parseInt(args[2]), boardPosition, Integer.MIN_VALUE, Integer.MAX_VALUE, 'W'));			
+				System.out.println("Positions Evaluated by Static Estimation: "+ABOpening.getCountSE());
+				System.out.println("AB Estimation: "+ABOpening.getCountAB());
+							
+				
+				//FileReader fr = new FileReader(args[0]);
+				//FileReader fr2 = new FileReader("board3.txt");
+				//BufferedReader br2 = new BufferedReader(fr2);
+				
+				//int tempDepth = 3;
+				//boardPosition = br2.readLine();
+				
+				System.out.println("\n\nInput board1.txt ----> "+boardPosition);
+				System.out.println("\nMiniMax MidGame Result:");
+				MiniMaxGame.setCountSE(0);
+				System.out.println("Next Board Position --> "+MiniMaxGame.maxMin(Integer.parseInt(args[2]), boardPosition, 'W'));
+				//System.out.println("Next Board Position --> "+MiniMaxGame.maxMin(tempDepth, boardPosition, 'W'));
+				System.out.println("Positions Evaluated by Static Estimation: "+MiniMaxGame.getCountSE());
+				System.out.println("MINIMAX Estimation: "+MiniMaxGame.getCountMinimax());
+				
+				
+				System.out.println("\nAB MidGame Result:");
+				ABGame.setCountSE(0);
 				System.out.println(Integer.parseInt(args[2]));
-			
-			String boardPosition = br.readLine();
-			br.close();
-			/*System.out.println("Input board1.txt ----> "+boardPosition);
-			System.out.println("\nMiniMax Opening Result:");
-			MiniMaxOpening.setCountSE(0);
-			System.out.println("Next Board Position --> "+MiniMaxOpening.maxMin(Integer.parseInt(args[2]), boardPosition, 'W'));			
-			System.out.println("Positions Evaluated by Static Estimation: "+MiniMaxOpening.getCountSE());
-			System.out.println("MINIMAX Estimation: "+MiniMaxOpening.getCountMinimax());
-			/*
-			System.out.println("\n\nAB Opening Result:");
-			ABOpening.setCountSE(0);
-			System.out.println("Next Board Position --> "+ABOpening.maxMin(Integer.parseInt(args[2]), boardPosition, Integer.MIN_VALUE, Integer.MAX_VALUE, 'W'));			
-			System.out.println("Positions Evaluated by Static Estimation: "+ABOpening.getCountSE());
-			System.out.println("AB Estimation: "+ABOpening.getCountAB());
-						
-			
-			//FileReader fr = new FileReader(args[0]);
-			FileReader fr2 = new FileReader("board3.txt");
-			BufferedReader br2 = new BufferedReader(fr2);
-			
-			//int tempDepth = 3;
-			boardPosition = br2.readLine();*/
-			
-			System.out.println("\n\nInput board3.txt ----> "+boardPosition);
-			System.out.println("\nMiniMax MidGame Result:");
-			MiniMaxGame.setCountSE(0);
-			System.out.println("Next Board Position --> "+MiniMaxGame.maxMin(Integer.parseInt(args[2]), boardPosition, 'W'));
-			//System.out.println("Next Board Position --> "+MiniMaxGame.maxMin(tempDepth, boardPosition, 'W'));
-			System.out.println("Positions Evaluated by Static Estimation: "+MiniMaxGame.getCountSE());
-			System.out.println("MINIMAX Estimation: "+MiniMaxGame.getCountMinimax());
-			
-			
-			System.out.println("\nAB MidGame Result:");
-			ABGame.setCountSE(0);
-			System.out.println(Integer.parseInt(args[2]));
-			System.out.println("Next Board Position --> "+ABGame.maxMin(Integer.parseInt(args[2]), boardPosition, Integer.MIN_VALUE, Integer.MAX_VALUE, 'W'));
-			//System.out.println("Next Board Position --> "+ABGame.maxMin(tempDepth, boardPosition, Integer.MIN_VALUE, Integer.MAX_VALUE, 'W'));
-			System.out.println("Positions Evaluated by Static Estimation: "+ABGame.getCountSE());
-			System.out.println("AB Estimation: "+ABGame.getCountAB());
-			
-			
-			System.out.println("***** BLACK *****");
-			/*
-			System.out.println("Input board1.txt ----> "+boardPosition);
-			System.out.println("\nMiniMax Opening Result:");
-			MiniMaxOpeningBlack.setCountSE(0);
-			System.out.println("Next Board Position --> "+MiniMaxOpeningBlack.maxMin(Integer.parseInt(args[2]), boardPosition, 'B'));			
-			System.out.println("Positions Evaluated by Static Estimation: "+MiniMaxOpeningBlack.getCountSE());
-			System.out.println("MINIMAX Estimation: "+MiniMaxOpeningBlack.getCountMinimax());*/
-			/*
-			System.out.println("\n\nAB Opening Result:");
-			ABOpeningBlack.setCountSE(0);
-			System.out.println("Next Board Position --> "+ABOpeningBlack.maxMin(Integer.parseInt(args[2]), boardPosition, Integer.MIN_VALUE, Integer.MAX_VALUE, 'B'));			
-			System.out.println("Positions Evaluated by Static Estimation: "+ABOpeningBlack.getCountSE());
-			System.out.println("AB Estimation: "+ABOpeningBlack.getCountAB());
-			*/
-			
-			/*System.out.println("\n\nInput board3.txt ----> "+boardPosition);
-			System.out.println("\nMiniMax MidGame Result:");
-			MiniMaxGameBlack.setCountSE(0);
-			System.out.println("Next Board Position --> "+MiniMaxGameBlack.maxMin(Integer.parseInt(args[2]), boardPosition, 'B'));
-			//System.out.println("Next Board Position --> "+MiniMaxGame.maxMin(tempDepth, boardPosition, 'W'));
-			System.out.println("Positions Evaluated by Static Estimation: "+MiniMaxGameBlack.getCountSE());
-			System.out.println("MINIMAX Estimation: "+MiniMaxGameBlack.getCountMinimax());*/
-			/*
-			System.out.println("\nAB MidGame Result:");
-			ABGameBlack.setCountSE(0);
-			System.out.println("Next Board Position --> "+ABGameBlack.maxMin(Integer.parseInt(args[2]), boardPosition, Integer.MIN_VALUE, Integer.MAX_VALUE, 'B'));
-			//System.out.println("Next Board Position --> "+ABGame.maxMin(tempDepth, boardPosition, Integer.MIN_VALUE, Integer.MAX_VALUE, 'W'));
-			System.out.println("Positions Evaluated by Static Estimation: "+ABGameBlack.getCountSE());
-			System.out.println("AB Estimation: "+ABGameBlack.getCountAB());
-			
-			br.close();
-			br2.close();*/
-						
-			//System.out.println("Close Mill Count: "+countMill("xxxxxxxxxWxxWxxxWxxWWWW", 'W'));
+				System.out.println("Next Board Position --> "+ABGame.maxMin(Integer.parseInt(args[2]), boardPosition, Integer.MIN_VALUE, Integer.MAX_VALUE, 'W'));
+				//System.out.println("Next Board Position --> "+ABGame.maxMin(tempDepth, boardPosition, Integer.MIN_VALUE, Integer.MAX_VALUE, 'W'));
+				System.out.println("Positions Evaluated by Static Estimation: "+ABGame.getCountSE());
+				System.out.println("AB Estimation: "+ABGame.getCountAB());
+				
+				
+				System.out.println("***** BLACK *****");
+				
+				System.out.println("Input board1.txt ----> "+boardPosition);
+				System.out.println("\nMiniMax Opening Result:");
+				MiniMaxOpeningBlack.setCountSE(0);
+				System.out.println("Next Board Position --> "+MiniMaxOpeningBlack.maxMin(Integer.parseInt(args[2]), boardPosition, 'B'));			
+				System.out.println("Positions Evaluated by Static Estimation: "+MiniMaxOpeningBlack.getCountSE());
+				System.out.println("MINIMAX Estimation: "+MiniMaxOpeningBlack.getCountMinimax());
+				
+				System.out.println("\n\nAB Opening Result:");
+				ABOpeningBlack.setCountSE(0);
+				System.out.println("Next Board Position --> "+ABOpeningBlack.maxMin(Integer.parseInt(args[2]), boardPosition, Integer.MIN_VALUE, Integer.MAX_VALUE, 'B'));			
+				System.out.println("Positions Evaluated by Static Estimation: "+ABOpeningBlack.getCountSE());
+				System.out.println("AB Estimation: "+ABOpeningBlack.getCountAB());
+				
+				
+				System.out.println("\n\nInput board3.txt ----> "+boardPosition);
+				System.out.println("\nMiniMax MidGame Result:");
+				MiniMaxGameBlack.setCountSE(0);
+				System.out.println("Next Board Position --> "+MiniMaxGameBlack.maxMin(Integer.parseInt(args[2]), boardPosition, 'B'));
+				//System.out.println("Next Board Position --> "+MiniMaxGame.maxMin(tempDepth, boardPosition, 'W'));
+				System.out.println("Positions Evaluated by Static Estimation: "+MiniMaxGameBlack.getCountSE());
+				System.out.println("MINIMAX Estimation: "+MiniMaxGameBlack.getCountMinimax());
+				
+				System.out.println("\nAB MidGame Result:");
+				ABGameBlack.setCountSE(0);
+				System.out.println("Next Board Position --> "+ABGameBlack.maxMin(Integer.parseInt(args[2]), boardPosition, Integer.MIN_VALUE, Integer.MAX_VALUE, 'B'));
+				//System.out.println("Next Board Position --> "+ABGame.maxMin(tempDepth, boardPosition, Integer.MIN_VALUE, Integer.MAX_VALUE, 'W'));
+				System.out.println("Positions Evaluated by Static Estimation: "+ABGameBlack.getCountSE());
+				System.out.println("AB Estimation: "+ABGameBlack.getCountAB());
+				
+				br.close();
+				//br2.close();
+							
+				//System.out.println("Close Mill Count: "+countMill("xxxxxxxxxWxxWxxxWxxWWWW", 'W'));
 			
 		} catch (Exception e) {
 			e.printStackTrace();
